@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build
-      run: cargo --target ${{ matrix.target }} build --release
+      run: cargo build --target ${{ matrix.target }} --release
     - name: Save
       run: mdkir -p release && cp target/${{ matrix.target }}/release/think-and-say release/think-and-say-${{ matrix.target }}
 
