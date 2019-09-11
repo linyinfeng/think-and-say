@@ -5,7 +5,7 @@ A small toy program to say with the meme "支離滅裂な思考・発言" in ter
 ## Installation
 
 ```
-cargo install https://github.com/linyinfeng/think-and-say.git
+cargo install --git https://github.com/linyinfeng/think-and-say.git
 ```
 
 ## Usage
