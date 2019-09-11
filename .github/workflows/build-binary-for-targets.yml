@@ -1,0 +1,39 @@
+name: Build Binary for Targets
+
+on:
+  push:
+    branches:    
+      - master
+
+jobs:
+  build-linux-binaries:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install toolchain target
+      run: rustup target add ${{ matrix.target }}
+    - name: Build
+      run: cargo build --target ${{ matrix.target }} --release
+    - uses: actions/upload-artifact@master
+      with:
+        name: think-and-say-${{ matrix.target }}
+        path: target/${{ matrix.target }}/release/think-and-say
+
+  build-windows-binaries:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        target: [x86_64-pc-windows-msvc, aarch64-pc-windows-msvc]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install toolchain target
+      run: rustup target add ${{ matrix.target }}
+    - name: Build
+      run: cargo build --target ${{ matrix.target }} --release
+    - uses: actions/upload-artifact@master
+      with:
+        name: think-and-say-${{ matrix.target }}.exe
+        path: target/${{ matrix.target }}/release/think-and-say.exe
