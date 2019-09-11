@@ -147,5 +147,5 @@ fn main() {
         mixer
     };
     let result = mixer.mix();
-    println!("{}", result.buffer);
+    print!("{}", result.buffer);
 }
