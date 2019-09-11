@@ -1,0 +1,12 @@
+[package]
+name = "think-and-say"
+version = "0.0.0"
+authors = ["Lin Yinfeng <lin.yinfeng@outlook.com>"]
+edition = "2018"
+
+[dependencies]
+log = "*"
+env_logger = "*"
+structopt = "*"
+unicode-width = "*"
+unicode-segmentation = "*"
