@@ -30,3 +30,20 @@ jobs:
       with:
         name: think-and-say-${{ matrix.target }}
         path: target/${{ matrix.target }}/release/think-and-say
+
+  build-windows-binaries:
+    needs: build-and-test
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        target: [x86_64-pc-windows-msvc, aarch64-pc-windows-msvc]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install toolchain target
+      run: rustup target add ${{ matrix.target }}
+    - name: Build
+      run: cargo build --target ${{ matrix.target }} --release
+    - uses: actions/upload-artifact@master
+      with:
+        name: think-and-say-${{ matrix.target }}.exe
+        path: target/${{ matrix.target }}/release/think-and-say.exe
