@@ -17,6 +17,10 @@ jobs:
   build-linux-binaries:
     needs: build-and-test
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu-latest
+      volumes:
+        - release-volume:/release
     strategy:
       matrix:
         target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
@@ -27,11 +31,15 @@ jobs:
     - name: Build
       run: cargo build --target ${{ matrix.target }} --release
     - name: Save
-      run: mkdir -p release && cp target/${{ matrix.target }}/release/think-and-say release/think-and-say-${{ matrix.target }}
+      run: mkdir -p release && cp target/${{ matrix.target }}/release/think-and-say /release/think-and-say-${{ matrix.target }}
 
   check-release-binaries:
     needs: build-linux-binaries
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu-latest
+      volumes:
+        - release-volume:/release
     steps:
     - name: Check
-      run: ls release
+      run: ls /release
