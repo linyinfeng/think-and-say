@@ -35,5 +35,5 @@ jobs:
       run: cargo build --target ${{ matrix.target }} --release
     - uses: actions/upload-artifact@master
       with:
-        name: think-and-say-${{ matrix.target }}.exe
+        name: think-and-say-${{ matrix.target }}
         path: target/${{ matrix.target }}/release/think-and-say.exe
