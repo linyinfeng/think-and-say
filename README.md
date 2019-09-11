@@ -14,7 +14,7 @@ cargo install --git https://github.com/linyinfeng/think-and-say.git
 $ think-and-say --help
 think-and-say 0.0.0
 Lin Yinfeng <lin.yinfeng@outlook.com>
-
+A small toy program to say with the meme "支離滅裂な思考・発言" in terminal.
 
 USAGE:
     think-and-say [OPTIONS] <text>
