@@ -1,6 +1,6 @@
 [package]
 name = "think-and-say"
-version = "0.0.0"
+version = "0.0.1-alpha.0"
 authors = ["Lin Yinfeng <lin.yinfeng@outlook.com>"]
 edition = "2018"
 description = "A small toy program to say with the meme \"支離滅裂な思考・発言\" in terminal."
