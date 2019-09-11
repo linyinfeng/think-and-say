@@ -22,6 +22,8 @@ jobs:
         target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
     steps:
     - uses: actions/checkout@v1
+    - name: Install toolchain target
+      run: rustup target add ${{ matrix.target }}
     - name: Build
       run: cargo build --target ${{ matrix.target }} --release
     - name: Save
