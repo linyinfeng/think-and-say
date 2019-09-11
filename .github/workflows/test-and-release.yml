@@ -26,12 +26,7 @@ jobs:
       run: rustup target add ${{ matrix.target }}
     - name: Build
       run: cargo build --target ${{ matrix.target }} --release
-    - name: Save
-      run: mkdir -p ${HOME}/release && cp target/${{ matrix.target }}/release/think-and-say ${HOME}/release/think-and-say-${{ matrix.target }}
-
-  check-release-binaries:
-    needs: build-linux-binaries
-    runs-on: ubuntu-latest
-    steps:
-    - name: Check
-      run: ls ${HOME}/release
+    - uses: actions/upload-artifact@master
+      with:
+        name: think-and-say-${{ matrix.target }}
+        path: target/${{ matrix.target }}/release/think-and-say
