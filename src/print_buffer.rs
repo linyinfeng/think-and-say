@@ -137,30 +137,6 @@ impl<'a> PrintBuffer<'a> {
     pub fn columns_len(&self) -> usize {
         self.lines.iter().map(|s| s.len()).max().unwrap_or(0)
     }
-
-    pub fn set_transparent(&mut self, transparent_graphme: &str) {
-        assert_eq!(UnicodeWidthStr::width(transparent_graphme), 1);
-        for line in self.lines.iter_mut() {
-            for location in line.iter_mut() {
-                if *location == PrintLocation::Grapheme(transparent_graphme) {
-                    *location = PrintLocation::Transparent;
-                }
-            }
-        }
-    }
-
-    pub fn trim_line_tailing_transparent(&mut self) {
-        for line in self.lines.iter_mut() {
-            let mut trasparent_number = 0usize;
-            for location in line.iter_mut() {
-                match location {
-                    PrintLocation::Transparent => trasparent_number += 1,
-                    _ => trasparent_number = 0,
-                }
-            }
-            line.truncate(line.len() - trasparent_number);
-        }
-    }
 }
 
 impl<'a> fmt::Display for PrintBuffer<'a> {
